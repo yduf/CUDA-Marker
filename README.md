@@ -7,7 +7,7 @@
 
 ```bash
 # This is the regular call to have a working environment
-# isolate nix to avoid full copy of the folder
+# use nix-shell rather than flake.nix to avoid full copy of the folder
 nix-shell
 uv sync
 
