@@ -1,11 +1,19 @@
 { pkgs ? import <nixpkgs> {} }:
 
+let
+  nixglhostSrc = builtins.fetchTarball {
+    url = "https://github.com/numtide/nix-gl-host/archive/refs/heads/main.tar.gz";
+  };
+  nixglhost = import nixglhostSrc { inherit pkgs; };
+in
+
 pkgs.mkShell {
   packages = [
     pkgs.python3
     pkgs.uv
 
-    pkgs.stdenv.cc.cc.lib  # 👈 provides libstdc++.so.6
+    pkgs.stdenv.cc.cc.lib     # provides libstdc++.so.6
+    nixglhost
   ];
 
   shellHook = ''
