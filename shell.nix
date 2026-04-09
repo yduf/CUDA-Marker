@@ -14,6 +14,11 @@ pkgs.mkShell {
     python --version
     uv --version
 
+    # enable nvidia GPU on homelab
+    export __NV_PRIME_RENDER_OFFLOAD=1 
+    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    export UV_CACHE_DIR=/home/yves/DEV/.uv_cache
+
     if [ ! -d .venv ]; then
       uv venv
     fi
