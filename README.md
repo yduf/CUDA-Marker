@@ -1,9 +1,11 @@
 # system GPU+CUDA + Nix Python + uv pytorch
-- nix provides standard tools python + uv
-- uv manage python packages (including torch and cuda)
+- [nix](https://yduf.github.io/package-nix/) provides standard tools python + uv
+- [uv](https://docs.astral.sh/uv/) manage python packages (including torch and cuda)
 - thanks to [NixGLHost](https://github.com/numtide/nix-gl-host?tab=readme-ov-file#nixglhost---nix-openglcuda-wrapper) we can bridge system driver to nix setup
 
 ## Setup
+
+As a prerequesite, you need to have [nix](https://yduf.github.io/package-nix/) package manager installed. 
 
 ```bash
 # This is the regular call to have a working environment
@@ -11,11 +13,15 @@
 nix-shell
 uv sync
 
-# then check GPU
+# This can take some times as it will download pytorch > 1GB of package
+
+# then (optionally) check GPU
 python -c "import torch; print(torch.version.cuda)"
 ldd $(python -c "import torch; print(torch._C.__file__)") | grep cuda
 
 nixglhost python -c "import torch; print(torch.cuda.is_available()); print(torch.cuda.get_device_name(0))"
+
+# and you are done
 ```
 
 **Notes** this is specific to my own homelab setup and can be safely removed
@@ -41,7 +47,8 @@ nixglhost marker_single --output_dir . <my_pdf>.pdf
 
 ### Models
 
-Are automatically downloaded ans stored in
+Models are downloaded automatically and stored in
 ```bash
 ~/.cache/datalab/models/
 ```
+Again first call will take some time and bandwidth to retrieve data.
