@@ -1,11 +1,19 @@
 # system GPU+CUDA + Nix Python + uv pytorch
 - [nix](https://yduf.github.io/package-nix/) provides standard tools python + uv
 - [uv](https://docs.astral.sh/uv/) manage python packages (including torch and cuda)
-- thanks to [NixGLHost](https://github.com/numtide/nix-gl-host?tab=readme-ov-file#nixglhost---nix-openglcuda-wrapper) we can bridge system driver to nix setup
+- thanks to [NixGLHost](https://github.com/numtide/nix-gl-host?tab=readme-ov-file#nixglhost---nix-openglcuda-wrapper) we can bridge  [system driver](https://yduf.github.io/pc-hardware-gpu-rtx-5070Ti/#linux-setup) to nix setup
+
+<pre>
+.
+├── pyproject.toml
+└── shell.nix
+</pre>
 
 ## Setup
 
-As a prerequesite, you need to have [nix](https://yduf.github.io/package-nix/) package manager installed. 
+As a prerequesite, you need to have
+- [nix](https://yduf.github.io/package-nix/) package manager installed. 
+- A working CUDA installation.
 
 ```bash
 # This is the regular call to have a working environment
